@@ -1,44 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Repositories;
 
-use Illuminate\Http\Request;
+use Image;
 
-use App\Http\Requests;
-use App\Repositories\ProjectsRepository;
-
-class ProjectsController extends Controller
+class ProjectsRepository 
 {
-    //保护一下Repo变量，只能在本类及其子类使用
-    protected $Repo;
 
-    //在构造方法中使用方法注入
-    public function __construct(ProjectsRepository $repo)
-    {
-        $this->Repo = $repo;
-    }
-
-
-    public function index()
-    {
-        //
-    }
-
-
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        $this->Repo->newProject($request);
-        return '创建成功！';
-    }
-
-
-/*    public function store(Request $request)
-    {
+	//本以为在controller这样写很流弊了，原来还可以这样重构
+	//把数据逻辑与controller分离开
+	public function newProject($request)
+	{
         //神奇之处，从模型的关系入手，而不是new project来用
         //从关系入手，可以避免用户创建别的project
         //project表中有user_id，省去了创建user_id的麻烦，牛逼！
@@ -46,7 +18,8 @@ class ProjectsController extends Controller
             'name' => $request->name,
             'thumbnail' => $this->thumbnail($request)  //$this指本文件，调用本文件thumbnail方法
         ]);
-    }
+	}
+
 
     public function thumbnail($request) 
     {
@@ -59,29 +32,5 @@ class ProjectsController extends Controller
 
             return $name;
         }
-    }*/
-
-
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-
-    public function destroy($id)
-    {
-        //
     }
 }
