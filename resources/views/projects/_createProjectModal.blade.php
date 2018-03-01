@@ -23,6 +23,8 @@
               {!! Form::file('thumbnail') !!}
             </div>
 
+            @include('errors/_errors')
+
       </div>
       <div class="modal-footer">
             {!! Form::submit('新建项目', ['class'=>'btn btn-primary']) !!}

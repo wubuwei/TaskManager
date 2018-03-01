@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Repositories\ProjectsRepository;
+use App\Http\Requests\CreateProjectRequest;
 
 class ProjectsController extends Controller
 {
@@ -30,8 +31,15 @@ class ProjectsController extends Controller
         //
     }
 
-    public function store(Request $request)
+    //使用CreateProjectRequest来注入，因为它是继承自Request扩展的
+    //这样可以直接验证了
+    public function store(CreateProjectRequest $request)
     {
+/*      //尽量不要这样写，在controller又执行了验证逻辑 
+        $this->validate($request, [
+            'name' => 'required'
+        ]);*/
+
         $this->Repo->newProject($request);
         return '创建成功！';
     }
