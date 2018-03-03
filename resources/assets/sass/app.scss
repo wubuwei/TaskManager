@@ -1,2 +1,13 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+.thumbnail{
+	padding: 0;
+
+	.caption {
+		padding: 0;
+
+		a {
+			color: black;
+		}
+	}
+}

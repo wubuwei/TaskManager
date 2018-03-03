@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -29,7 +30,8 @@ class HomeController extends Controller
 
     public function welcome()
     {
-        return view('welcome');
+        $projects = Auth::user()->projects()->get();
+        return view('welcome', compact('projects'));
     }
 
 }
