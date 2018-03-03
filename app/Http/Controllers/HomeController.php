@@ -30,6 +30,7 @@ class HomeController extends Controller
 
     public function welcome()
     {
+        //当前用户的就使用Auth来调用
         $projects = Auth::user()->projects()->get();
         return view('welcome', compact('projects'));
     }
