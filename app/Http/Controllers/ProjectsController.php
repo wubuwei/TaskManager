@@ -86,13 +86,16 @@ class ProjectsController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $this->Repo->updateProject($request, $id);
+
+        return Redirect::back();
     }
 
 
     public function destroy($id)
     {
         Project::find($id)->delete();
+        
         return Redirect::back();
     }
 }

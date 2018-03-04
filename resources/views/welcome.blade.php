@@ -14,7 +14,12 @@
                             @include('projects/_deleteForm')
                         </li>
 
-                        <li><i class="fa fa-btn fa-cog"></i></li>
+                        <li>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#editModal-{{ $project->id }}">
+                              <i class="fa fa-btn fa-cog"></i>
+                            </button>
+                        </li>
 
                     </ul>
 
@@ -27,6 +32,9 @@
                         </a>
                     </div>
                 </div>
+
+                @include('projects/_editModal')
+
             </div>  
             @endforeach
         @endif

@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use Image;
+use App\Project;
 
 class ProjectsRepository 
 {
@@ -32,5 +33,17 @@ class ProjectsRepository
 
             return $name;
         }
+    }
+
+    public function updateProject($request, $id)
+    {
+        $project = Project::findOrFail($id);
+        $project->name = $request->name;
+
+        if ($request->hasFile('thumbnail')) {
+            $project->thumbnail = $this->thumbnail($request);
+        }
+
+        $project->save();
     }
 }
