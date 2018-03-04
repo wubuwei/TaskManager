@@ -9,8 +9,13 @@
                 <div class="thumbnail">
 
                     <ul class="icon-bar">
-                        <li><i class="fa fa-btn fa-close"></i></li>
-                        <li><i class="fa fa-btn fa-check"></i></li>
+                    
+                        <li>
+                            @include('projects/_deleteForm')
+                        </li>
+
+                        <li><i class="fa fa-btn fa-cog"></i></li>
+
                     </ul>
 
                     <a href="{{ route('projects.show', $project->name) }}">

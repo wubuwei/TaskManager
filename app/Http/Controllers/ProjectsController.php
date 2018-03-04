@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Repositories\ProjectsRepository;
 use App\Http\Requests\CreateProjectRequest;
+use App\Project;
+use Redirect;
 
 class ProjectsController extends Controller
 {
@@ -41,7 +43,7 @@ class ProjectsController extends Controller
         ]);*/
 
         $this->Repo->newProject($request);
-        return '创建成功！';
+        return Redirect::back();
     }
 
 
@@ -90,6 +92,7 @@ class ProjectsController extends Controller
 
     public function destroy($id)
     {
-        //
+        Project::find($id)->delete();
+        return Redirect::back();
     }
 }

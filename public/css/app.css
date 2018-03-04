@@ -5744,6 +5744,11 @@ button.close {
     .thumbnail .icon-bar li {
       float: right;
       margin-right: 3px; }
+      .thumbnail .icon-bar li .btn {
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        padding: 0; }
       .thumbnail .icon-bar li .fa-btn {
         color: #d9534f; }
   .thumbnail .caption {
