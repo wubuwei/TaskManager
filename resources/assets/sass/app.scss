@@ -1,13 +1,33 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 .thumbnail{
-	padding: 0;
+    position: relative;
+    padding: 0;
 
-	.caption {
-		padding: 0;
+    .icon-bar {
+        width: 100%;
+        background-color: #dff0d8;
+        opacity: 0.7;
+        list-style: none;
+        z-index: 100;
+        position: absolute;
+        top: 0;
 
-		a {
-			color: black;
-		}
-	}
+        li {
+            float: right;
+            margin-right: 3px;
+
+            .fa-btn {
+                color:#d9534f;
+            }
+        }
+    }
+
+    .caption {
+        padding: 0;
+
+        a {
+            color: black;
+        }
+    }
 }

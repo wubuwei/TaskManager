@@ -77,5 +77,7 @@
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+
+    @yield('customJS')
 </body>
 </html>
