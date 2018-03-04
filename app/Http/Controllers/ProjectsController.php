@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Repositories\ProjectsRepository;
 use App\Http\Requests\CreateProjectRequest;
+use App\Http\Requests\EditProjectRequest;
 use App\Project;
 use Redirect;
 
@@ -84,7 +85,7 @@ class ProjectsController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(EditProjectRequest $request, $id)
     {
         $this->Repo->updateProject($request, $id);
 
