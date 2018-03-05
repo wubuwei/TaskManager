@@ -10,6 +10,7 @@ use App\Http\Requests\CreateProjectRequest;
 use App\Http\Requests\EditProjectRequest;
 use App\Project;
 use Redirect;
+use Auth;
 
 class ProjectsController extends Controller
 {
@@ -42,7 +43,9 @@ class ProjectsController extends Controller
         $this->validate($request, [
             'name' => 'required'
         ]);*/
-
+        //$request包含表单传过来的name数据，还有当前用户
+        //通过Request可以使用user()获取用户信息，类似等同于Auth::user(),不再深挖，暂时挖不动了。
+        //dd($request->user());
         $this->Repo->newProject($request);
         return Redirect::back();
     }
@@ -73,9 +76,11 @@ class ProjectsController extends Controller
     }*/
 
 
-    public function show($id)
+    public function show($name)
     {
-        //
+        //get方法取回的是集合，first取回的实例
+        $project = Auth::user()->projects()->where('name', $name)->first();
+        return view('projects.show', compact('project'));
     }
 
 

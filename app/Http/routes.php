@@ -18,3 +18,5 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::resource('projects', 'ProjectsController');
+
+Route::resource('tasks', 'TasksController');
