@@ -80,7 +80,9 @@ class ProjectsController extends Controller
     {
         //get方法取回的是集合，first取回的实例
         $project = Auth::user()->projects()->where('name', $name)->first();
-        return view('projects.show', compact('project'));
+        $toDo = $project->tasks()->where('completed', 0)->get();
+        $Done = $project->tasks()->where('completed', 1)->get();
+        return view('projects.show', compact('project', 'toDo', 'Done'));
     }
 
 
