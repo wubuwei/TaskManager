@@ -20,3 +20,4 @@ Route::get('/home', 'HomeController@index');
 Route::resource('projects', 'ProjectsController');
 
 Route::resource('tasks', 'TasksController');
+Route::post('tasks/{id}/check', ['as'=>'tasks.check', 'uses'=>'TasksController@check']);

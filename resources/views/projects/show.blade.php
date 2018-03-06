@@ -19,7 +19,10 @@
         {{-- 所有的集合都可以作为迭代器，可以就像简单的 PHP 数组一样来遍历它们 --}}
         <table class="table table-striped">
             @foreach($toDo as $task)
-                <tr><td>{{ $task->title }}</td></tr>
+                <tr>
+                    <td>{{ $task->title }}</td>
+                    <td>@include('tasks/_checkForm')</td>
+                </tr>
             @endforeach
         </table>
     </div>
@@ -28,7 +31,10 @@
     <div role="tabpanel" class="tab-pane" id="Done">
         <table class="table table-striped">
             @foreach($Done as $task)
-                <tr><td>{{ $task->title }}</td></tr>
+                <tr>
+                    <td>{{ $task->title }}</td>
+
+                </tr>
             @endforeach
         </table>
     </div>

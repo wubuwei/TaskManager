@@ -80,6 +80,15 @@ class TasksController extends Controller
         //
     }
 
+    public function check($id)
+    {
+        $task = Task::findOrFail($id);
+        $task->completed = 1;
+        $task->save();
+        return Redirect::back();
+    }
+
+
     /**
      * Remove the specified resource from storage.
      *
