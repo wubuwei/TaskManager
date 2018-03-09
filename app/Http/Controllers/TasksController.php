@@ -9,6 +9,8 @@ use App\Task;
 use Redirect;
 use App\Http\Requests\CreateTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use Auth;
+use App\Project;
 
 class TasksController extends Controller
 {
@@ -19,7 +21,10 @@ class TasksController extends Controller
      */
     public function index()
     {
-        //
+        $toDo = Auth::user()->tasks()->where('completed', 0)->paginate(3);
+        $Done = Auth::user()->tasks()->where('completed', 1)->paginate(3);
+        $projects = Project::lists('name', 'id');
+        return view('tasks.index', compact('toDo', 'Done', 'projects'));
     }
 
     /**

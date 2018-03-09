@@ -82,7 +82,7 @@ class ProjectsController extends Controller
         $project = Auth::user()->projects()->where('name', $name)->first();
         $toDo = $project->tasks()->where('completed', 0)->get();
         $Done = $project->tasks()->where('completed', 1)->get();
-        $projects = Auth::user()->projects()->lists('name', 'id');//查询项目名及id传到blade视图
+        $projects = Project::lists('name', 'id');//查询项目名及id传到blade视图
         return view('projects.show', compact('project', 'toDo', 'Done', 'projects'));
     }
 
