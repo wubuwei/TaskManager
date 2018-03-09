@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Task;
 use Redirect;
+use App\Http\Requests\CreateTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 
 class TasksController extends Controller
 {
@@ -36,10 +38,10 @@ class TasksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateTaskRequest $request)
     {
         Task::create([
-            'title' => $request->title,
+            'title' => $request->name,
             'project_id' => $request->project_id
         ]);
 
@@ -75,7 +77,7 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTaskRequest $request, $id)
     {
         $task = Task::findOrFail($id);
         $task->title = $request->title;

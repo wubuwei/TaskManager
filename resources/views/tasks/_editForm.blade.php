@@ -23,7 +23,16 @@
             {!! Form::label('projectList', '所属项目：', ['class'=>'control-label']) !!}
             {!! Form::select('projectList', $projects, $project->id, ['class'=>'form-control']) !!}
             {{-- $projects传来的是序列对(laravelcollective里的用法), id对应着value值,name对应项目名。$project->id设置默认选中所属项目 --}}
-          </div>           
+          </div>   
+
+          @if($errors->has('title'))
+            <ul class="alert alert-danger">
+              @foreach($errors->get('title') as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          @endif  
+
       </div>
       <div class="modal-footer">
         {!! Form::submit('编辑任务', ['class'=>'btn btn-default']) !!}
