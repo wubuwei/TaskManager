@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="container">
-
-
+	<div class="container tasks-tabs">
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
@@ -18,12 +16,17 @@
     <div role="tabpanel" class="tab-pane active" id="toDo">
         {{-- 所有的集合都可以作为迭代器，可以就像简单的 PHP 数组一样来遍历它们 --}}
         <table class="table table-striped">
+          <thead>
+            <tr>
+              @include('tasks/_createForm')
+            </tr>
+          </thead>
             @foreach($toDo as $task)
                 <tr>
-                    <td>{{ $task->title }}</td>
-                    <td>@include('tasks/_checkForm')</td>
-                    <td>@include('tasks/_editForm')</td>
-                    <td>@include('tasks/_deleteForm')</td>
+                    <td class="first-cell">{{ $task->title }}</td>
+                    <td class="icon-cell">@include('tasks/_checkForm')</td>
+                    <td class="icon-cell">@include('tasks/_editForm')</td>
+                    <td class="icon-cell">@include('tasks/_deleteForm')</td>
                 </tr>
             @endforeach
         </table>
@@ -42,10 +45,6 @@
     </div>
 
   </div>
-
-
-  	@include('tasks/_createForm')
-
 
 	</div>
 @endsection

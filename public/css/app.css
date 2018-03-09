@@ -5773,4 +5773,10 @@ button.close {
     .project-modal .modal-trigger .fa-btn {
       margin-right: 0; }
 
+.tasks-tabs .first-cell {
+  padding-left: 4em; }
+
+.tasks-tabs .icon-cell {
+  width: 4em; }
+
 /*# sourceMappingURL=app.css.map */
