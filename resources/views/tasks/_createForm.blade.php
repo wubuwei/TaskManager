@@ -9,12 +9,12 @@
 {!! Form::open(['route'=>['tasks.store', 'project_id'=>$project->id], 'class'=>'form-inline']) !!}
     <td class="date-cell"></td>
     <td class="first-cell">
-      {!! Form::text('name', null, ['placeholder' => '有什么要完成的任务吗?', 'class'=>'form-control']) !!}
+      {!! Form::text('name', null, ['placeholder' => '有什么要完成的任务吗?', 'class'=>'form-control ']) !!}
     </td>  
 
     {{-- {!! Form::hidden('project', $project->id) !!} --}}
     <td class="icon-cell">
-      <button type="submit" class="btn btn-success">
+      <button type="submit" class="btn btn-success btn-sm">
         <i class="fa fa-plus"></i>
       </button>
     </td>

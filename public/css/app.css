@@ -5773,6 +5773,9 @@ button.close {
     .project-modal .modal-trigger .fa-btn {
       margin-right: 0; }
 
+.tasks-tabs .date-cell {
+  padding-left: 0em; }
+
 .tasks-tabs .first-cell {
   padding-left: 4em; }
 
