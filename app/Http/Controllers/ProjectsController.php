@@ -11,6 +11,7 @@ use App\Http\Requests\EditProjectRequest;
 use App\Project;
 use Redirect;
 use Auth;
+use Carbon\Carbon;
 
 class ProjectsController extends Controller
 {
@@ -78,6 +79,9 @@ class ProjectsController extends Controller
 
     public function show($name)
     {
+        //Carbon::setlocale('zh');
+        //return Carbon::createFromDate(1994,11,22)->age;
+
         //get方法取回的是集合，first取回的实例
         $project = Auth::user()->projects()->where('name', $name)->first();
         $toDo = $project->tasks()->where('completed', 0)->get();

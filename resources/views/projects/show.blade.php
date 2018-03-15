@@ -23,6 +23,7 @@
           </thead>
             @foreach($toDo as $task)
                 <tr>
+                    <td class="date-cell">{{ $task->updated_at->diffForHumans() }}</td>
                     <td class="first-cell">{{ $task->title }}</td>
                     <td class="icon-cell">@include('tasks/_checkForm')</td>
                     <td class="icon-cell">@include('tasks/_editForm')</td>
