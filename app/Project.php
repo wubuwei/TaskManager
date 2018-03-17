@@ -20,4 +20,19 @@ class Project extends Model
     {
     	return $this->hasMany('App\Task');
     }
+
+    public function getThumbnailAttribute($value)
+    {
+        //相比于注释掉，此段代码更加简洁，省去了代码行数
+        if (!$value) {
+            return 'flower.jpg';
+        }        
+        return $value;
+
+/*        if ($value) {
+            return $value;
+        } else {
+            return 'flower.jpg';
+        }*/
+    }
 }
