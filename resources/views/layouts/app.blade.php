@@ -75,10 +75,12 @@
 
     <div class="clearfix"></div>
     <footer class="footer">
-        <div class="container">
-             当前总共有 {{ $total }} 任务，已完成 {{ $doneCount }} 个，未完成 {{ $toDoCount }} 个 
-        </div>
-        
+
+        @if(auth()->check())
+            <div class="container">
+                 当前总共有 {{ $total }} 任务，已完成 {{ $doneCount }} 个，未完成 {{ $toDoCount }} 个 
+            </div>
+        @endif
     </footer>
 
     <!-- JavaScripts -->
