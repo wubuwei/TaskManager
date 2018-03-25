@@ -19,5 +19,10 @@ Route::get('/home', 'HomeController@index');
 
 Route::resource('projects', 'ProjectsController');
 
+//tasks/charts这个精确路由，要在模糊路由得前面定义
+Route::get('tasks/charts', ['as'=>'tasks.charts', 'uses'=>'TasksController@charts']);
+
 Route::resource('tasks', 'TasksController');
+
 Route::post('tasks/{id}/check', ['as'=>'tasks.check', 'uses'=>'TasksController@check']);
+

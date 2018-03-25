@@ -72,11 +72,16 @@ class TasksController extends Controller
     }
 
 
-
     public function destroy($id)
     {
         Task::find($id)->delete();
 
         return Redirect::back();
     }
+
+    public function charts()
+    {
+        return view('tasks.charts');
+    }
 }
+

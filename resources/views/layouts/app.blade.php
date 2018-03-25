@@ -47,6 +47,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ route('tasks.index') }}">所有任务</a></li>
+                    <li><a href="{{ route('tasks.charts') }}">图标统计</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
