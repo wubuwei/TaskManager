@@ -9,11 +9,18 @@ use App\Task;
 use Redirect;
 use App\Http\Requests\CreateTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Repositories\TasksRepository;
 use Auth;
 use App\Project;
 
 class TasksController extends Controller
 {
+    protected $task;
+
+    public function __construct(TasksRepository $task)
+    {
+        $this->task = $task;
+    }
 
     public function index()
     {
@@ -81,7 +88,10 @@ class TasksController extends Controller
 
     public function charts()
     {
-        return view('tasks.charts');
+        $total = $this->task->total();
+        $toDoCount = $this->task->toDoCount();
+        $doneCount = $this->task->doneCount();
+        return view('tasks.charts', compact('total', 'toDoCount', 'doneCount'));
     }
 }
 

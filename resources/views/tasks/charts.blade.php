@@ -21,29 +21,33 @@
             //要使用data,需要在前面先定义
             var data = {
                 labels: [
-                    "Red",
-                    "Blue",
-                    "Yellow"
+                    "未完成",
+                    "已完成"
                 ],
                 datasets: [
                     {
-                        data: [300, 50, 100],
+                        data: [{{ $toDoCount }}, {{ $doneCount }}],
                         backgroundColor: [
                             "#FF6384",
-                            "#36A2EB",
-                            "#FFCE56"
+                            "#36A2EB"
                         ],
                         hoverBackgroundColor: [
                             "#FF6384",
-                            "#36A2EB",
-                            "#FFCE56"                            
+                            "#36A2EB"                       
                         ]
                     }]
             };
 
             var myPieChart = new Chart(ctxPie, {
                 type: 'pie',
-                data: data
+                data: data,
+                options: {
+                    responsive:true,
+                    title: {
+                        display: true,
+                        text: '所有任务的完成比例(总数：{{ $total }})'
+                    }
+                }
             });
         });
     </script>
