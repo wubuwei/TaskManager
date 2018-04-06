@@ -91,7 +91,8 @@ class TasksController extends Controller
         $total = $this->task->total();
         $toDoCount = $this->task->toDoCount();
         $doneCount = $this->task->doneCount();
-        return view('tasks.charts', compact('total', 'toDoCount', 'doneCount'));
+        $names = Project::lists('name');
+        return view('tasks.charts', compact('total', 'toDoCount', 'doneCount', 'names'));
     }
 }
 
