@@ -88,11 +88,12 @@ class TasksController extends Controller
 
     public function charts()
     {
-        $total = $this->task->total();
+        $total = $this->task->total(); //调用taskRepository类的方法
         $toDoCount = $this->task->toDoCount();
         $doneCount = $this->task->doneCount();
-        $names = Project::lists('name');
-        return view('tasks.charts', compact('total', 'toDoCount', 'doneCount', 'names'));
+        $projects = Project::with('tasks')->get(); //使用with指定模型里对应好的关系，get获取所有项目分别对下应得任务数据
+        $names = Project::lists('name');  //取出name字段列的所有值
+        return view('tasks.charts', compact('total', 'toDoCount', 'doneCount', 'names', 'projects'));
     }
 }
 

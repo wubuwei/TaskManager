@@ -61,7 +61,6 @@
                 labels: {!! $names !!},
                 datasets: [
                     {
-                        label: "My First dataset",
                         backgroundColor: [
                             'rgba(255,92,132,0.2)',
                             'rgba(54,162,235,0.2)',
@@ -75,13 +74,25 @@
                             'rgba(75,192,192,1)',
                         ],
                         borderColor: 1,
-                        data: [65,59,80,81,56],
+                        //data: [65,59,80,81,56],
+                        //TasksCountArray方法返回的键值对数组，需要的格式是上面那种，所以json_encode
+                        data: {!! json_encode(TasksCountArray($projects)) !!},
                     }
                 ]
             };
             var myBarChart = new Chart(ctxBar, {
                 type: 'bar',
-                data: dataBar
+                data: dataBar,
+                options: {
+                    responsive:true,
+                    title: {
+                        display: true,
+                        text: '项目之间的任务总数对比'
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
             });
         });
     </script>
