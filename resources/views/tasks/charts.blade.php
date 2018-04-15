@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="col-md-8 col-md-offset-2">
     <div class="container col-md-4">
         <canvas id="pieChart" width="300" height="300"></canvas>
         <div id="pie-data" data-todo="{{ $toDoCount }}" data-done="{{ $doneCount }}"data-total="{{ $total }}"></div>
@@ -17,7 +18,7 @@
     <div class="container col-md-4">
         <canvas id="radarChart" width="300" height="300"></canvas>
     </div>
-
+</div>
 
 @endsection
 
@@ -56,7 +57,18 @@
         };
         var myRadarChart = new Chart(ctxRadar, {
             type: 'radar',
-            data: data
+            data: data,
+            options: {
+                responsive:true,
+                title: {
+                    display: true,
+                    text: '项目之间的任务完成情况'
+                },
+                legend: {
+                    display: true,
+                    position: "bottom"
+                }
+            }
         });
     </script>  
 @endsection

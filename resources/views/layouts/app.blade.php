@@ -75,14 +75,13 @@
     @yield('content')
 
     <div class="clearfix"></div>
-    <footer class="footer">
-
+    <div class="footer panel-info panel-footer">
         @if(auth()->check())
             <div class="container">
                  当前总共有 {{ $total }} 任务，已完成 {{ $doneCount }} 个，未完成 {{ $toDoCount }} 个 
             </div>
         @endif
-    </footer>
+    </div>
 
     <!-- JavaScripts -->
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
