@@ -92,7 +92,7 @@ class TasksController extends Controller
         $toDoCount = $this->task->toDoCount();
         $doneCount = $this->task->doneCount();
         $projects = Project::with('tasks')->get(); //使用with指定模型里对应好的关系，get获取所有项目分别对下应得任务数据
-        //$projects = Project::get(); //不需要使用with指定也可以
+        //$projects = Project::get(); //不需要使用with指定也可以 //radar图时此处就不行了
         $names = Project::lists('name');  //取出name字段列的所有值
         return view('tasks.charts', compact('total', 'toDoCount', 'doneCount', 'names', 'projects'));
     }
