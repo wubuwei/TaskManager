@@ -12,8 +12,15 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass('app.scss');
-
+    mix.sass('app.scss')
+    .scripts([
+        'charts/Chart.min.js',
+        'charts/pie.js',
+        'charts/bar.js'
+        ],
+        'public/js/charts.js'
+    );
+        
     //copy到新位置
     mix.copy('node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js', 'public/js/bootstrap.min.js');
 });
