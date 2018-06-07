@@ -2,7 +2,10 @@
 
 @section('content')
     <div id="app" class="container">
-        <h2 v-if="remaings.length">未完成的步骤(@{{ remaings.length }})</h2>
+        <h2 v-if="remaings.length">
+            待完成的步骤(@{{ remaings.length }})
+            <span class="btn btn-sm btn-info" @click="completeAll">完成所有</span>
+        </h2>
         <ul class="list-group">
             <li class="list-group-item" v-for="(step,index) in inProcess">
                 <span @dblclick="editStep(step)">@{{ step.name }}</span>
@@ -24,7 +27,10 @@
         </form>
         <div class="clearfix"></div>
 
-        <h2 v-show="completions.length">已完成的步骤(@{{ completions.length }})</h2>
+        <h2 v-show="completions.length">
+            已完成的步骤(@{{ completions.length }})
+            <span class="btn btn-sm btn-danger" @click="clearCompleted">清除所有已完成</span>
+        </h2>
         <ul class="list-group">
             <li class="list-group-item" v-for="(step,index) in processed">
                 @{{ step.name }}
@@ -71,6 +77,16 @@
                 },
                 toggleCompletion:function (step) {
                     step.completed = ! step.completed;
+                },
+                completeAll:function () {
+                  this.steps.forEach(function (step) {
+                      step.completed = true;
+                  })
+                },
+                clearCompleted:function () {
+                    this.steps = this.steps.filter(function (step) {
+                        return !step.completed;
+                    })
                 }
             },
             computed:{
