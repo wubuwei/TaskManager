@@ -49,17 +49,29 @@
 
 @section('customJS')
     <script src="{{ asset('js/vue.js') }}"></script>
+    <script src="{{ asset('js/vue-resource.js') }}"></script>
     <script>
         new Vue({
             el: '#app',
             data: {
                 steps:[
-                    { name:'fix bugs', completed:false },
-                    { name:'meeting', completed:false },
+                    { name:'', completed:false },
                 ],
                 newStep:''
             },
+            mounted:function(){
+              this.fetchSteps();
+            },
             methods:{
+                fetchSteps:function(){
+                    this.$http.get('/tasks/2/steps').then((response)=>{
+                        //success
+                        this.steps  = response.body;
+                    },(response)=>{
+                        //error
+                        response.status;
+                    });
+                },
                 addStep:function () {
                     this.steps.push({ name:this.newStep, completed:false });
                     this.newStep = '';

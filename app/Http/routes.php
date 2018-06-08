@@ -24,5 +24,7 @@ Route::get('tasks/charts', ['as'=>'tasks.charts', 'uses'=>'TasksController@chart
 
 Route::resource('tasks', 'TasksController');
 
+Route::resource('tasks.steps', 'StepsController');
+
 Route::post('tasks/{id}/check', ['as'=>'tasks.check', 'uses'=>'TasksController@check']);
 
