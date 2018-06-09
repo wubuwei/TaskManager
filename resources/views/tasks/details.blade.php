@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('customHeader')
+    <meta name="token" id="token" content="{{ csrf_token() }}">
+@endsection
+
 @section('content')
     <div id="app" class="container">
         <h2 v-if="remaings.length">
@@ -42,7 +46,7 @@
         </ul>
 
         {{--vue2中全局变量$data本身即是json格式，vue1的写法为 @{{ $data | json }}--}}
-       <pre>@{{ $data }}</pre>
+       {{--<pre>@{{ $data }}</pre>--}}@{{ $data }}
 
     </div>
 @endsection
@@ -51,6 +55,7 @@
     <script src="{{ asset('js/vue.js') }}"></script>
     <script src="{{ asset('js/vue-resource.js') }}"></script>
     <script>
+        Vue.http.headers.common['X-CSRF-TOKEN'] = $('#token').attr('content');
         new Vue({
             el: '#app',
             data: {
@@ -73,8 +78,14 @@
                     });
                 },
                 addStep:function () {
-                    this.steps.push({ name:this.newStep, completed:false });
-                    this.newStep = '';
+                    this.$http.post('/tasks/2/steps', { name:this.newStep}).then((response)=>{
+                        //success
+                        this.newStep = '';
+                        this.fetchSteps();
+                    },(response)=>{
+                        //error
+                        response.status;
+                    });
                 },
                 removeStep:function(index){
                     this.steps.splice(index,1);

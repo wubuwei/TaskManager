@@ -37,9 +37,14 @@ class StepsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($taskID, Request $request)
     {
-        //
+        $task=Task::findOrFail($taskID)->steps()->create([
+            'name' => $request->name,
+            'completed' => 0
+        ]);
+
+       // dd();
     }
 
     /**
