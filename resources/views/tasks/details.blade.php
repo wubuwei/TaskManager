@@ -88,7 +88,13 @@
                     });
                 },
                 removeStep:function(index){
-                    this.steps.splice(index,1);
+                    this.$http.delete('/tasks/2/steps/'+index.id).then((response)=>{
+                        //success
+                        this.fetchSteps();
+                    },(response)=>{
+                        //error
+                        response.status;
+                    });
                 },
                 editStep:function(step){
                     //移除当前step
@@ -99,7 +105,13 @@
                     this.$refs.newStep.focus();
                 },
                 toggleCompletion:function (step) {
-                    step.completed = ! step.completed;
+                    this.$http.patch('/tasks/2/steps/'+step.id, {opposite: ! step.completed}).then((response)=>{
+                        //success
+                        this.fetchSteps();
+                    },(response)=>{
+                        //error
+                        response.status;
+                    });
                 },
                 completeAll:function () {
                   this.steps.forEach(function (step) {

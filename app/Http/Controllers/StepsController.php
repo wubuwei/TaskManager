@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Task;
+use App\Step;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -39,12 +40,10 @@ class StepsController extends Controller
      */
     public function store($taskID, Request $request)
     {
-        $task=Task::findOrFail($taskID)->steps()->create([
+        Task::findOrFail($taskID)->steps()->create([
             'name' => $request->name,
             'completed' => 0
         ]);
-
-       // dd();
     }
 
     /**
@@ -76,9 +75,11 @@ class StepsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $taskID, $id)
     {
-        //
+        $step = Step::findOrFail($id);
+        $step->completed = $request->opposite ? 1 : 0;
+        $step->save();
     }
 
     /**
@@ -87,8 +88,8 @@ class StepsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($taskID,$id)
     {
-        //
+        Step::findOrFail($id)->delete();
     }
 }
