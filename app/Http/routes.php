@@ -24,6 +24,10 @@ Route::get('tasks/charts', ['as'=>'tasks.charts', 'uses'=>'TasksController@chart
 
 Route::resource('tasks', 'TasksController');
 
+//防止与模糊路由冲突
+Route::post('tasks/{tasks}/steps/complete', 'StepsController@completeAll');
+Route::delete('tasks/{tasks}/steps/clear', 'StepsController@clearCompleted');
+
 Route::resource('tasks.steps', 'StepsController');
 
 Route::post('tasks/{id}/check', ['as'=>'tasks.check', 'uses'=>'TasksController@check']);

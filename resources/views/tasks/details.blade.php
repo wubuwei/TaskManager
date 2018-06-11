@@ -114,14 +114,22 @@
                     });
                 },
                 completeAll:function () {
-                  this.steps.forEach(function (step) {
-                      step.completed = true;
-                  })
+                    this.$http.post('/tasks/2/steps/complete').then((response)=>{
+                        //success
+                        this.fetchSteps();
+                    },(response)=>{
+                        //error
+                        response.status;
+                    });
                 },
                 clearCompleted:function () {
-                    this.steps = this.steps.filter(function (step) {
-                        return !step.completed;
-                    })
+                    this.$http.delete('/tasks/2/steps/clear').then((response)=>{
+                        //success
+                        this.fetchSteps();
+                    },(response)=>{
+                        //error
+                        response.status;
+                    });
                 }
             },
             computed:{

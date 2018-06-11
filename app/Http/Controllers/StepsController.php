@@ -92,4 +92,16 @@ class StepsController extends Controller
     {
         Step::findOrFail($id)->delete();
     }
+
+    public function completeAll($taskID)
+    {
+        Task::findOrFail($taskID)->steps()->update([
+           'completed' => 1
+        ]);
+    }
+
+    public function clearCompleted($taskID)
+    {
+        Step::where('task_id', $taskID)->where('completed', 1)->delete();
+    }
 }
