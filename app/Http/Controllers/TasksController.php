@@ -50,7 +50,8 @@ class TasksController extends Controller
 
     public function show($id)
     {
-        return view('tasks.details');
+        $task = Task::findOrFail($id);
+        return view('tasks.details', compact('task'));
     }
 
 

@@ -6,6 +6,8 @@
 
 @section('content')
     <div id="app" class="container">
+        <h1 class="text-muted">{{ $task->title }}</h1>
+
         <h2 v-if="remaings.length">
             待完成的步骤(@{{ remaings.length }})
             <span class="btn btn-sm btn-info" @click="completeAll">完成所有</span>
@@ -56,20 +58,24 @@
     <script src="{{ asset('js/vue-resource.js') }}"></script>
     <script>
         Vue.http.headers.common['X-CSRF-TOKEN'] = $('#token').attr('content');
+        var resource = Vue.resource('/tasks/{{ $task->id }}/steps{/id}');
+
         new Vue({
             el: '#app',
             data: {
                 steps:[
                     { name:'', completed:false },
                 ],
-                newStep:''
+                newStep:'',
+                baseURL:'/tasks/{{ $task->id }}/steps'
             },
             mounted:function(){
               this.fetchSteps();
             },
             methods:{
                 fetchSteps:function(){
-                    this.$http.get('/tasks/2/steps').then((response)=>{
+                    //改用resource后，query()等同于get()
+                    resource.query().then((response)=>{
                         //success
                         this.steps  = response.body;
                     },(response)=>{
@@ -78,7 +84,7 @@
                     });
                 },
                 addStep:function () {
-                    this.$http.post('/tasks/2/steps', { name:this.newStep}).then((response)=>{
+                    resource.save('', { name:this.newStep}).then((response)=>{
                         //success
                         this.newStep = '';
                         this.fetchSteps();
@@ -88,7 +94,7 @@
                     });
                 },
                 removeStep:function(index){
-                    this.$http.delete('/tasks/2/steps/'+index.id).then((response)=>{
+                    resource.delete({id:index.id}).then((response)=>{
                         //success
                         this.fetchSteps();
                     },(response)=>{
@@ -105,7 +111,7 @@
                     this.$refs.newStep.focus();
                 },
                 toggleCompletion:function (step) {
-                    this.$http.patch('/tasks/2/steps/'+step.id, {opposite: ! step.completed}).then((response)=>{
+                    resource.update({id:step.id}, {opposite: ! step.completed}).then((response)=>{
                         //success
                         this.fetchSteps();
                     },(response)=>{
@@ -114,7 +120,7 @@
                     });
                 },
                 completeAll:function () {
-                    this.$http.post('/tasks/2/steps/complete').then((response)=>{
+                    this.$http.post(this.baseURL+'/complete').then((response)=>{
                         //success
                         this.fetchSteps();
                     },(response)=>{
@@ -123,7 +129,7 @@
                     });
                 },
                 clearCompleted:function () {
-                    this.$http.delete('/tasks/2/steps/clear').then((response)=>{
+                    this.$http.delete(this.baseURL+'/clear').then((response)=>{
                         //success
                         this.fetchSteps();
                     },(response)=>{
