@@ -1,5 +1,5 @@
 var elixir = require('laravel-elixir');
-
+require('laravel-elixir-vue-2');
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -18,8 +18,8 @@ elixir(function(mix) {
         'charts/pie.js',
         'charts/bar.js'
         ],
-        'public/js/charts.js'
-    );
+        'public/js/charts.js')
+        .webpack('vue/app.js');
         
     //copy到新位置
     mix.copy('node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js', 'public/js/bootstrap.min.js');
