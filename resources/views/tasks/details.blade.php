@@ -13,13 +13,7 @@
             <span class="btn btn-sm btn-info" @click="completeAll">完成所有</span>
         </h2>
         <ul class="list-group">
-            <li class="list-group-item" v-for="(step,index) in inProcess">
-                <span @dblclick="editStep(step)">@{{ step.name }}</span>
-                <span class="pull-right">
-                    <i class="fa fa-check" @click="toggleCompletion(step)"></i>
-                    <i class="fa fa-close" @click="removeStep(step)"></i>
-                </span>
-            </li>
+            <step-list  v-for="(step,index) in inProcess" :step="step"></step-list>
         </ul>
 
         <form @submit.prevent="addStep" class="form-inline,form-horizontal">

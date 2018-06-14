@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueResource from 'vue-resource';
+var StepList = require('./components/stepList.vue');
 
 Vue.use(VueResource);
 
@@ -18,6 +19,7 @@ new Vue({
     mounted:function(){
         this.fetchSteps();
     },
+    components:{ StepList },
     methods:{
         fetchSteps:function(){
             //改用resource后，query()等同于get()
