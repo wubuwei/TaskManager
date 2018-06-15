@@ -107,5 +107,5 @@ new Vue({
                 return ! step.completed;
             });
         },
-    }
+    },
 });

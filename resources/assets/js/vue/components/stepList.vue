@@ -12,7 +12,18 @@
 
 <script>
     export default {
-        props:['step']
+        props:['step'],
+        methods:{
+            editStep:function (step) {
+                this.$emit('edit', this.step)
+            },
+            toggleCompletion:function (step) {
+                this.$emit('toggle', step);
+            },
+            removeStep:function (step) {
+                this.$emit('remove', step);
+            }
+        }
     }
 </script>
 
