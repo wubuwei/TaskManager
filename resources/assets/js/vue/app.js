@@ -13,7 +13,6 @@ new Vue({
         steps:[
             { name:'', completed:false },
         ],
-        newStep:'',
         baseURL:self.location+'/steps'
     },
     mounted:function(){
@@ -31,10 +30,9 @@ new Vue({
                 response.status;
             });
         },
-        addStep:function () {
-            resource.save('', { name:this.newStep}).then((response)=>{
+        addStep:function (step) {
+            resource.save('', { name:step}).then((response)=>{
                 //success
-                this.newStep = '';
                 this.fetchSteps();
             },(response)=>{
                 //error
@@ -49,14 +47,6 @@ new Vue({
                 //error
                 response.status;
             });
-        },
-        editStep:function(step){
-            //移除当前step
-            this.removeStep(step);
-            //将当前step加载到input输入框
-            this.newStep = step.name;
-            //focus输入框
-            this.$refs.newStep.focus();
         },
         toggleCompletion:function (step) {
             resource.update({id:step.id}, {opposite: ! step.completed}).then((response)=>{
@@ -85,27 +75,5 @@ new Vue({
                 response.status;
             });
         }
-    },
-    computed:{
-        inProcess:function () {
-            return this.steps.filter(function (step) {
-                return ! step.completed;
-            });
-        },
-        processed:function () {
-            return this.steps.filter(function (step) {
-                return step.completed;
-            });
-        },
-        completions:function () {
-            return this.steps.filter(function (step) {
-                return step.completed;
-            });
-        },
-        remaings:function () {
-            return this.steps.filter(function (step) {
-                return ! step.completed;
-            });
-        },
-    },
+    }
 });
