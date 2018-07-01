@@ -50,6 +50,9 @@
                     <li><a href="{{ route('tasks.charts') }}">图标统计</a></li>
                 </ul>
 
+                <!-- Instant Search Form -->
+                <search></search>
+
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
@@ -86,6 +89,7 @@
     <!-- JavaScripts -->
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/search.js') }}"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 
     @yield('customJS')

@@ -19,8 +19,9 @@ elixir(function(mix) {
         'charts/bar.js'
         ],
         'public/js/charts.js')
-        .webpack('vue/app.js');
-        
+        .webpack('vue/app.js')
+        .webpack('vue/search.js');
+
     //copy到新位置
     mix.copy('node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js', 'public/js/bootstrap.min.js');
 });

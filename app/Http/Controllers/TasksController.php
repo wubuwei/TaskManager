@@ -30,6 +30,10 @@ class TasksController extends Controller
         return view('tasks.index', compact('toDo', 'Done', 'projects'));
     }
 
+    public function searchApi()
+    {
+        return Auth::user()->tasks;
+    }
 
     public function create()
     {
