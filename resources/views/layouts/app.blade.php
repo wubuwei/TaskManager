@@ -51,7 +51,9 @@
                 </ul>
 
                 <!-- Instant Search Form -->
-                <search></search>
+                @if(Auth::user())
+                    <search></search>
+                @endif
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
